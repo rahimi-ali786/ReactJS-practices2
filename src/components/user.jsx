@@ -1,5 +1,5 @@
 import {useParams} from 'react-router-dom';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import axios from 'axios';
 import queryString from 'query-string';
 import {useNavigate} from 'react-router-dom';
@@ -9,6 +9,7 @@ const User = (props) => {
   const {id} = useParams();
   console.log(queryString.parse(window.location.search));
   const navigate = useNavigate();
+  const firstName = useRef();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -20,12 +21,15 @@ const User = (props) => {
       setUser(response.data.data);
     };
     fetchUser();
+    console.log(firstName.current);
   }, [id]);
 
  return ( 
    <>
      <img src={user.avatar} style={{borderRadius: '50%', width: '100px'}} alt="" />
-     <h4>{user.first_name} {user.last_name}</h4>
+     <h4 ref={firstName}>
+        {user.first_name} {user.last_name}
+     </h4>
      <h5>{user.email}</h5>
      <button onClick={() => { navigate('/users'); }} className="btn btn-info mt-3">Users</button>
    </>
