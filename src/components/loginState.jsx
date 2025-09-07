@@ -41,6 +41,9 @@ import * as yup from 'yup';
             'x-api-key': 'reqres-free-v1'
           }    
         });
+        // console.log(response.data.token);
+        localStorage.setItem('token', response.data.token);
+        this.props.navigate('/dashboard', {replace: true});
         this.setState({sending: false});
         console.log(response);
       } catch (error) {
