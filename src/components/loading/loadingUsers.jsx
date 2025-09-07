@@ -3,9 +3,9 @@ import Skeleton from 'react-loading-skeleton';
 
 class LoadingUsers extends Component {
  render() { 
-  return Array(6).fill({}).map(() =>{
+  return Array(6).fill({}).map((_, idx) => {
     return(
-      <div className="col-4 text-center p-5">
+      <div key={idx} className="col-4 text-center p-5">
         <Skeleton className='mb-4' circle={true} height={100} width={100} />
         <Skeleton className='mb-2' height={30} count={2} />
       </div>
@@ -14,4 +14,4 @@ class LoadingUsers extends Component {
  }
 }
  
-export default LoadingUsers;
+export default LoadingUsers;    
